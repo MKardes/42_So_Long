@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/07/20 17:18:27 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/07/22 21:06:21 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 # include "mlx/mlx.h"
 
 typedef struct s_ptrs{
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*mlx;
+	void	*win;
+	int		x;
+	int		y;
+	int		a;
 }	t_ptrs;
 
 #endif
