@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:16 by mkardes           #+#    #+#             */
-/*   Updated: 2022/07/22 22:13:46 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/07/23 18:25:06 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	cl_info(t_ptrs *ptr)
 	int	x;
 	int	y;
 
-	y = 800;
-	while (y <= 810)
+	y = 960;
+	while (y <= 1000)
 	{
-		x = 100;
-		while (x <= 200)
+		x = 0;
+		while (x <= 100)
 		{
 			mlx_pixel_put(ptr->mlx ,ptr->win, x, y, 0x00000000);
 			x++;
@@ -33,8 +33,18 @@ int	cl_info(t_ptrs *ptr)
 
 int	info(t_ptrs *ptr)
 {
+	char	*x;
+	char	*y;
+
+	x = ft_itoa(ptr->x);
+	y = ft_itoa(ptr->y);
 	cl_info(ptr);
-	mlx_string_put(ptr->mlx, ptr->win, 100, 800, 0x0000FF00, "asd");
+	mlx_string_put(ptr->mlx, ptr->win, 5, 975, 0x0000FF00, "x:");
+	mlx_string_put(ptr->mlx, ptr->win, 20, 975, 0x0000FF00, x);
+	mlx_string_put(ptr->mlx, ptr->win, 5, 985, 0x0000FF00, "y:");
+    mlx_string_put(ptr->mlx, ptr->win, 20, 985, 0x0000FF00, y);
+	free(y);
+	free(x);
 	return (0);
 }
 
@@ -90,9 +100,9 @@ int	m_exit(int keycode, t_ptrs *rs)
 	if(keycode == 124)
 	{
 		mlx_destroy_window(rs->mlx, rs->win);
-		return (0);
+		exit(0);
+		return (1);
 	}
-	mlx_loop(rs->mlx);
 	return(0);
 }
 
@@ -100,7 +110,9 @@ int	m_close(int keycode, t_ptrs *ptr)
 {
 	info(ptr);
 	if (keycode == 53)
+	{
 		mlx_destroy_window(ptr->mlx, ptr->win);
+	}
 	if (keycode == 123)
 		direction(ptr, '<');
 	if (keycode == 124)
@@ -134,6 +146,7 @@ int	main(int ac, char **av)
 	ptr.mlx = mlx_init();
 	ptr.win = mlx_new_window(ptr.mlx, 1000, 1000, "Heyyo");
 	mlx_hook(ptr.win, 2, 0, m_close, &ptr);
+	mlx_hook(ptr.win, 17, 0, m_exit, &ptr);
 	mlx_loop(ptr.mlx);
 	return (0);
 }
