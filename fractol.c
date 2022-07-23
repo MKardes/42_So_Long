@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:16 by mkardes           #+#    #+#             */
-/*   Updated: 2022/07/23 18:25:06 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/07/23 18:37:26 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,23 +95,13 @@ int	direction(t_ptrs *ptr, char type)
 	return (0);
 }
 
-int	m_exit(int keycode, t_ptrs *rs)
-{
-	if(keycode == 124)
-	{
-		mlx_destroy_window(rs->mlx, rs->win);
-		exit(0);
-		return (1);
-	}
-	return(0);
-}
-
 int	m_close(int keycode, t_ptrs *ptr)
 {
 	info(ptr);
 	if (keycode == 53)
 	{
 		mlx_destroy_window(ptr->mlx, ptr->win);
+		exit(0);
 	}
 	if (keycode == 123)
 		direction(ptr, '<');
@@ -146,7 +136,6 @@ int	main(int ac, char **av)
 	ptr.mlx = mlx_init();
 	ptr.win = mlx_new_window(ptr.mlx, 1000, 1000, "Heyyo");
 	mlx_hook(ptr.win, 2, 0, m_close, &ptr);
-	mlx_hook(ptr.win, 17, 0, m_exit, &ptr);
 	mlx_loop(ptr.mlx);
 	return (0);
 }
