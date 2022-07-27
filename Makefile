@@ -1,14 +1,15 @@
 NAME = libmlx.a
 LIBX = mlx/libmlx.a
 PRINT = Others/ft_printf/libftprintf.a
+LINE = Others/Get_Next_Line/get_next_line.a
 MINILIB = mlx
 PRINTF = Others/ft_printf
 FLAGS = -Wall -Wextra -Werror
 LFLAGS = -framework OpenGL -framework AppKit
-PRG = fractol
+PRG = so_long
 
 all: $(NAME)
-	gcc $(LFLAGS) $(FLAGS) $(NAME) $(PRINT) *.c -o $(PRG)
+	gcc $(LFLAGS) $(FLAGS) $(NAME) $(PRINT) $(LINE) *.c -o $(PRG)
 	@echo "Mission FAİLED SUCCESSFULLY"
 
 $(NAME): $(LIBX) $(PRINT)
@@ -29,7 +30,7 @@ clean:
 
 fclean: clean
 	make fclean -C $(PRINTF)
-	rm -rf fractol *.a
+	rm -rf so_long *.a
 
 re: fclean all
 

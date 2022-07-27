@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:16 by mkardes           #+#    #+#             */
-/*   Updated: 2022/07/23 18:37:26 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/07/27 17:44:55 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "so_long.h"
+#include <fcntl.h>
 
 int	cl_info(t_ptrs *ptr)
 {
@@ -124,18 +125,36 @@ int	m_close(int keycode, t_ptrs *ptr)
 	return (0);
 }
 
+int	check_map(char **av)
+{
+	int	fd;
+
+	if (ft_strncmp((ft_strchr(av[1],'.') + 1), "ber", 4))
+		return (1);
+	fd = open(av[1],O_RDONLY);
+	if (fd == -1)
+		return (1);
+	return(0);
+}
+
 int	main(int ac, char **av)
 {
 	t_ptrs	ptr;
 
-	(void)av;
-	(void)ac;
-	ptr.x = 0;
-	ptr.y = 0;
-	ptr.a = 1;
-	ptr.mlx = mlx_init();
-	ptr.win = mlx_new_window(ptr.mlx, 1000, 1000, "Heyyo");
-	mlx_hook(ptr.win, 2, 0, m_close, &ptr);
-	mlx_loop(ptr.mlx);
+	if (ac == 2)
+	{
+		if (check_map(av))
+		{
+			ft_printf("Error\n");
+			exit(0);
+		}
+		ptr.x = 0;
+		ptr.y = 0;
+		ptr.a = 1;
+		ptr.mlx = mlx_init();
+		ptr.win = mlx_new_window(ptr.mlx, 1000, 1000, "Gulcin");
+		mlx_hook(ptr.win, 2, 0, m_close, &ptr);
+		mlx_loop(ptr.mlx);
+	}
 	return (0);
 }
