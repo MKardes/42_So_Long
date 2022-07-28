@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:16 by mkardes           #+#    #+#             */
-/*   Updated: 2022/07/27 17:44:55 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/07/28 12:33:38 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,15 +125,38 @@ int	m_close(int keycode, t_ptrs *ptr)
 	return (0);
 }
 
-int	check_map(char **av)
+int	map_create(int fd, char ***map)
+{
+	int	i;
+
+	i = 0;
+	(*map) = (char **)malloc(sizeof(char *) * 100);
+	if (!(*map))
+		return(0);
+	while (i < 100)
+	{
+		(*map)[i] = get_next_line(fd);
+		if (!(*map)[i])
+			break;
+		i++;
+	}
+	close(fd);
+	return(1);
+}
+
+int	check_file(char **av)
 {
 	int	fd;
+	char **map;
 
 	if (ft_strncmp((ft_strchr(av[1],'.') + 1), "ber", 4))
 		return (1);
 	fd = open(av[1],O_RDONLY);
 	if (fd == -1)
 		return (1);
+	if (!map_create(fd, &map))
+		return(1);
+	//if (!map_check(map))
 	return(0);
 }
 
@@ -143,7 +166,7 @@ int	main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		if (check_map(av))
+		if (check_file(av))
 		{
 			ft_printf("Error\n");
 			exit(0);
