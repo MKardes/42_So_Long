@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:16 by mkardes           #+#    #+#             */
-/*   Updated: 2022/07/28 12:33:38 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/07/28 18:05:10 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,21 +125,112 @@ int	m_close(int keycode, t_ptrs *ptr)
 	return (0);
 }
 
-int	map_create(int fd, char ***map)
+int	map_free(t_map map)
 {
 	int	i;
 
 	i = 0;
-	(*map) = (char **)malloc(sizeof(char *) * 100);
-	if (!(*map))
+	while (i < map.y)
+	{
+		free(map.map[i]);
+		i++;
+	}
+	free(map.map);
+	while(1);
+	return(0);
+}
+
+int	all_check(t_map map)
+{
+	int	chc[5] = {0};
+	int	i;
+	int	j;
+
+	i = 1;
+	(void)map;
+	(void)chc;
+	(void)j;
+	/*
+	while (i < map.y - 1)
+	{
+		j = 0;
+		while (j < map.x )
+		i++;
+	}
+	*/
+	return (1);
+}
+
+int	left_right_check(t_map map)
+{
+	int	i;
+
+	i = 1;
+	while (i < map.y - 1)
+	{
+		if (map.map[i][0] != '1' || map.map[i][map.x - 1] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	top_bot_check(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != '\n' && line[i] != '\0')
+	{
+		if (line[i] != '1')
+			return(0);
+		i++;
+	}
+	return (1);
+}
+
+int	map_checker(t_map map)
+{
+	int i;
+	int	j;
+
+	j = 0;
+	map.x = 0;
+	while (j < map.y - 1)
+	{
+		i = 0;
+		while (map.map[j][i] != '\n' && map.map[j][i] != '\0')
+			i++;
+		if (map.x != 0 && map.x != i)
+			return(map_free(map));
+		map.x = i;
+		j++;
+	}
+	if (!top_bot_check(map.map[0]) || !top_bot_check(map.map[map.y - 1]) ||
+		!left_right_check(map) || !left_right_check(map))
+	{
+		ft_printf("proplem\n");
+		return (map_free(map));
+	}
+	return(1);
+}
+
+int	map_create(int fd, t_map *map)
+{
+	int	i;
+
+	i = 0;
+	map -> map = (char **)malloc(sizeof(char *) * 100);
+	if (!(map -> map))
 		return(0);
 	while (i < 100)
 	{
-		(*map)[i] = get_next_line(fd);
-		if (!(*map)[i])
+		(map -> map) [i] = get_next_line(fd);
+		if (!(map -> map) [i])
 			break;
 		i++;
 	}
+	map -> y = i;
 	close(fd);
 	return(1);
 }
@@ -147,7 +238,7 @@ int	map_create(int fd, char ***map)
 int	check_file(char **av)
 {
 	int	fd;
-	char **map;
+	t_map map;
 
 	if (ft_strncmp((ft_strchr(av[1],'.') + 1), "ber", 4))
 		return (1);
@@ -156,7 +247,8 @@ int	check_file(char **av)
 		return (1);
 	if (!map_create(fd, &map))
 		return(1);
-	//if (!map_check(map))
+	if (!map_checker(map))
+		return(1);
 	return(0);
 }
 

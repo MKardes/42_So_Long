@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/07/27 15:31:51 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/07/28 13:04:06 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ typedef struct s_ptrs{
 	int		y;
 	int		a;
 }	t_ptrs;
+
+typedef struct s_map{
+	char	**map;
+	int		x;
+	int		y;
+}	t_map;
 
 char	*get_next_line(int fd);
 
