@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/07/29 20:13:24 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/02 14:02:02 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ typedef struct s_ptrs{
 	void	*mlx;
 	void	*win;
 	void	*image;
+	void	**coin;
 	int		x;
 	int		y;
 	int		a;
+	int		i;
 }	t_ptrs;
 
 typedef struct s_map{
