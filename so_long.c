@@ -6,81 +6,81 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:16 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/04 12:29:22 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/05 10:41:51 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <fcntl.h>
 
-int	map_create(int fd, t_map *map)
+void	image_allocation(t_ptrs *ptr)
 {
-	int	i;
-
-	i = 0;
-	map -> map = (char **)malloc(sizeof(char *) * 100);
-	if (!(map -> map))
-		return(0);
-	while (i < 100)
-	{
-		(map -> map) [i] = get_next_line(fd);
-		if (!(map -> map) [i])
-			break;
-		i++;
-	}
-	map -> y = i;
-	close(fd);
-	return(1);
+	(*ptr).images->i = (int *)malloc(sizeof(int) * 4);
+	(*ptr).images->i[0] = L_CNT;
+    (*ptr).images->i[1] = W_CNT;
+    (*ptr).images->i[2] = P_CNT;
+    (*ptr).images->i[3] = X_CNT;
+	(*ptr).images->i[4] = E_CNT;
+	(*ptr).images->i[5] = C_CNT;
+	(*ptr).images->lay = (void **)malloc(sizeof(void*) * (*ptr).images->i[0]);
+	(*ptr).images->wall = (void **)malloc(sizeof(void*) * (*ptr).images->i[1]);
+	(*ptr).images->play = (void **)malloc(sizeof(void*) * (*ptr).images->i[2]);
+	(*ptr).images->exit = (void **)malloc(sizeof(void*) * (*ptr).images->i[3]);
+	(*ptr).images->enem = (void **)malloc(sizeof(void*) * (*ptr).images->i[4]);
+	(*ptr).images->col = (void **)malloc(sizeof(void*) * (*ptr).images->i[5]);
 }
 
-int	check_file(char **av)
-{
-	int	fd;
-	t_map map;
-
-	if (ft_strncmp((ft_strchr(av[1],'.') + 1), "ber", 4))
-		return (1);
-	fd = open(av[1],O_RDONLY);
-	if (fd == -1)
-		return (1);
-	if (!map_create(fd, &map))
-		return(1);
-	if (!map_checker(map))
-		return(1);
-	return(0);
-}
-
-char	*join_2(char *str, int a, char *str2)
+char	*join_2(char *str,int a, int b, char *str2)
 {
 	char *inte;
 
 	inte = ft_itoa(a);
+	str = ft_strjoin(str, inte);
+	str = ft_strjoin(str, "/");
+	inte = ft_itoa(b);
 	str = ft_strjoin(str, inte);
 	str = ft_strjoin(str, str2);
 	free(inte);
 	return (str);
 }
 
-void coin_create(t_ptrs ptr, void ***coin)
+void	open_image(t_ptrs *ptr, int i, int j)
 {
-	int		i;
-	int		x;
-	int		y;
-	char	*str;
+	if (i == 0)
+		ptr->images->lay[j] = mlx_xpm_file_to_image(&(ptr->mlx), ptr->images->str, &(ptr->images->x), &(ptr->images->y));
+	else if (i == 1)
+		ptr->images->wall[j] = mlx_xpm_file_to_image(&(ptr->mlx), ptr->images->str, &(ptr->images->x), &(ptr->images->y));
+	else if (i == 2)
+        ptr->images->play[j] = mlx_xpm_file_to_image(&(ptr->mlx), ptr->images->str, &(ptr->images->x), &(ptr->images->y));
+	else if (i == 3)
+        ptr->images->exit[j] = mlx_xpm_file_to_image(&(ptr->mlx), ptr->images->str, &(ptr->images->x), &(ptr->images->y));
+	else if (i == 4)
+        ptr->images->enem[j] = mlx_xpm_file_to_image(&(ptr->mlx), ptr->images->str, &(ptr->images->x), &(ptr->images->y));
+	else if (i == 5)
+        ptr->images->col[j] = mlx_xpm_file_to_image(&(ptr->mlx), ptr->images->str, &(ptr->images->x), &(ptr->images->y));
+}
 
-	x = 100;
-	y = 100;
-	i = 1;
-	(*coin) = (void **)malloc(sizeof(char*) * 10);
-	while (i <= 9)
+void image_create(t_ptrs *ptr)
+{
+	int			i;
+	int			j;
+
+	ptr->images->x = 45;
+	ptr->images->y = 55;
+	i = 0;
+	image_allocation(ptr);
+	while (i <= 5)
 	{
-		str = join_2("Scripts/Coin/", i, ".xpm");
-		ft_printf("%s\n",str);
-		(*coin)[i] = mlx_xpm_file_to_image(&(ptr.mlx), str, &x, &y);
-		free(str);
+		j = 0;
+		while (j < ptr->images->i[i])
+		{
+			ptr->images->str = join_2("Scripts/", i, j, ".xpm");
+			ft_printf("%s\n",ptr->images->str);
+			open_image(ptr, i, j);
+			free(ptr->images->str);
+			j++;
+		}
 		i++;
 	}
-(*coin)[10] = mlx_xpm_file_to_image(&(ptr.mlx), "Scripts/0/0.xpm", &x, &y);
 }
 
 int	clear_f(t_ptrs *ptr)
@@ -92,42 +92,19 @@ int	clear_f(t_ptrs *ptr)
 
 int	coin_func(t_ptrs *ptr)
 {
-	
-	mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->coin[ptr->i], 100, 100);
-	usleep(40000);
+	mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->images->col[ptr->i], 100, 100);
+    mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->images->play[ptr->i], 200, 200);
+    ptr->i++;
+    usleep(100000);
+    if (ptr->i == 5)
+        ptr->i = 0;
+    return (0);
+
 	ptr->i++;
-	if (ptr->i == 10)
-		ptr->i = 1;
-	/*
-	int i;
-	int j;
-
-	i = 0;
-	while (i < 10)
-	{
-		j = 0;
-		while (j < 10)
-		{
-			mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->coin[10], i * 64, i * 64);
-			j++;
-		}
-		i++;
-	}*/
+	usleep(40000);
+	if (ptr->i == 9)
+		ptr->i = 0;
 	return (0);
-}
-
-void	start(char **av)
-{
-	if (check_file(av))
-	{
-		ft_printf("Error\n");
-		exit(0);
-	}
-}
-
-void	upgrade(t_ptrs ptr)
-{
-	(void)ptr;
 }
 
 void	asd(t_ptrs ptr)
@@ -136,53 +113,44 @@ void	asd(t_ptrs ptr)
     int j;
 
     i = 0;
-	ft_printf("asd\n");
-    while (i < 10)
+    while (i < ptr.map.y)
     {
         j = 0;
-        while (j < 10)
+        while (j < ptr.map.x)
         {
-            mlx_put_image_to_window(ptr.mlx, ptr.win, ptr.coin[10], i * 64,j * 64);
+			if (i == 0 || i == ptr.map.y - 1 || j == 0 || j == ptr.map.x - 1)
+                mlx_put_image_to_window(ptr.mlx, ptr.win, ptr.images->wall[WALL], j * 64,i * 64);
             j++;
         }
         i++;
     }
 }
 
-void    draw(t_ptrs ptr)
-{
-    ptr.x = 0;
-    ptr.y = 0;
-    ptr.a = 1;
-	ptr.i = 1;
-    ptr.win = mlx_new_window(ptr.mlx, 1000, 1000, "Heyyo");
-    coin_create(ptr, &(ptr.coin));
-	//coin_func(ptr);
-	asd(ptr);
-	ft_printf("a\n");
-    mlx_loop_hook(ptr.mlx, coin_func, &ptr);
-	ft_printf("b\n");
-	//mlx_loop_hook(ptr.mlx, clear_f, &ptr);
-}
-
 int	ft_key_esc(t_ptrs *ptr)
 {
-	ft_printf("a\n");
 	mlx_destroy_window((*ptr).mlx, (*ptr).win);
 	exit(0);
 }
 
+int	key_states(int key, t_ptrs **ptr)
+{
+	if (key == ESC)
+		ft_key_esc(*ptr);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
-	t_ptrs	ptr;
+	t_ptrs	*ptr;
 
+	ptr = (t_ptrs *)malloc(sizeof(t_ptrs));
+	ptr-> images = (t_images *)malloc(sizeof(t_images));
 	if (ac != 2)
 		return(0);
-	ptr.mlx = mlx_init();
-	start(av);
-	upgrade(ptr);
-	draw(ptr);
-	//mlx_hook(ptr.win, 17, 0, ft_key_esc, &ptr);
-	mlx_loop(ptr.mlx);
+	start(av, ptr);
+	mlx_key_hook(ptr->win, key_states, &ptr);
+	mlx_loop_hook(ptr->mlx, loop, ptr);
+	mlx_hook(ptr->win, 17, 0, ft_key_esc, ptr);
+	mlx_loop(ptr->mlx);
 	return (0);
 }

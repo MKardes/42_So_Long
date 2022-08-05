@@ -1,0 +1,54 @@
+/*
+int ft_key_e(t_ptrs *ptr)
+{
+    (void)ptr;
+    return (0);
+}
+
+int ft_esc(int  key_code, t_ptrs **ptr)
+{
+    ft_printf("Begininig of ESC\n");
+    if (key_code == P)
+    {
+        ft_printf("ft_esc\n");
+        mlx_destroy_image((*ptr)->mlx, (*ptr)->coin[12]);
+        ft_printf("seg check\n");
+    }
+    return(0);
+}
+
+int loop1(t_ptrs *ptr)
+{
+    //ft_printf("loop1\n");
+    mlx_key_hook(ptr->win, ft_esc, &ptr);
+    return (0);
+}
+
+void    ft_pause(t_ptrs *ptr)
+{
+    ft_printf("P pressed\n");
+    if (ptr->p == 0)
+    {
+        mlx_loop_hook(ptr->mlx, loop1, ptr);
+
+        t_ptrs  *pause;
+        pause = (t_ptrs *)malloc(sizeof(t_ptrs));
+        pause->mlx = mlx_init();
+        pause->win = mlx_new_window(pause->mlx, 300, 100, "Pause!");
+        mlx_loop_hook(pause->mlx, loop1, pause);
+        mlx_hook(pause->win, 17, 0, ft_key_esc1, pause);
+        mlx_loop(pause->mlx);
+    }
+    ft_printf("Exit PAUSE\n\n");
+}
+if (key == P)
+    {
+        ft_printf("x: %d\n",(*ptr)->map.x);
+        mlx_put_image_to_window((*ptr)->mlx, (*ptr)->win, (*ptr)->coin[12], ((((*ptr)->map.x / 2) * 64) - 112), 0);
+        if ((*ptr)->p == 0)
+            (*ptr)->p = 1;
+        else
+            (*ptr)->p = 0;
+        ft_pause(*ptr);
+    }
+*/
