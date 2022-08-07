@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/05 11:34:58 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/07 18:41:56 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,19 @@
 # define EXT 3
 # define ENM 4
 # define COL 5
-# define L_CNT 8
-# define W_CNT 2
+# define L_CNT 13
+# define W_CNT 3
 # define P_CNT 4
-# define X_CNT 0
+# define X_CNT 2
 # define E_CNT 0
 # define C_CNT 9
-# define LAYER 0
+# define LAYER 9
 # define PLAYER 0
-# define WALL 1
+# define WALL 2
 # define ENEMY 0
-# define EXIT 0
+# define EXIT 1
+# define p_x 48
+# define p_y 48
 
 typedef struct s_map{
     char    **map;
@@ -68,6 +70,12 @@ typedef struct s_images{
 	int		y;
 }	t_images;
 
+typedef struct s_player{
+	void	**skin;
+	int		x;
+	int		y;
+}	t_player;
+
 typedef struct s_ptrs{
 	void		*mlx;
 	void		*win;
@@ -78,6 +86,7 @@ typedef struct s_ptrs{
 	int			i;
 	int			p;
 	t_map		map;
+	t_player	*player;
 	t_images	*images;
 }	t_ptrs;
 
@@ -86,10 +95,10 @@ int		ft_error(char *str);
 int		map_checker(t_map *map);
 int		check_file(char **av, t_ptrs *ptr);
 int		loop(t_ptrs *ptr);
-void	asd(t_ptrs ptr);
 int		coin_func(t_ptrs *ptr);
 void	image_create(t_ptrs *ptr);
 void	start(char **av, t_ptrs *ptr);
 void	map_put(t_ptrs *ptr);
+void	image_create(t_ptrs *ptr);
 
 #endif

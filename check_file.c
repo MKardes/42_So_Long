@@ -32,10 +32,10 @@ int check_file(char **av, t_ptrs *ptr)
 	t_map	map;
 
 	if (ft_strncmp((ft_strchr(av[1],'.') + 1), "ber", 4))
-		return (1);
+		return (!ft_error("Yanlış dosya türü!"));
 	fd = open(av[1],O_RDONLY);
 	if (fd == -1)
-		return (1);
+		return (!ft_error("Dosya mevcut değil!"));
 	if (!map_create(fd, &map))
 		return(1);
 	if (!map_checker(&map))

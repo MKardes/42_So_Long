@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 12:15:51 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/05 11:41:08 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/07 17:29:30 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	all_check(t_map map)
 	}
 	if (map.e > 0 && map.c > 0 && map.p == 1)
 		return (1);
+	else if (map.p > 1)
+		return (ft_error("Birden çok başlama noktası!"));
 	return (ft_error("Harita eksik!"));
 }
 
