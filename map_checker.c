@@ -6,24 +6,19 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 12:15:51 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/07 17:29:30 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/08 12:33:04 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	map_free(t_map map)
+int	continue_func(t_map map)
 {
-	int	i;
-
-	i = 0;
-	while (i < map.y)
-	{
-		free(map.map[i]);
-		i++;
-	}
-	free(map.map);
-	return (0);
+	if (map.e > 0 && map.c > 0 && map.n > 0 && map.p == 1)
+		return (1);
+	else if (map.p > 1)
+		return (ft_error("Birden çok başlama noktası!"));
+	return (ft_error("Harita eksik!"));
 }
 
 int	all_check(t_map map)
@@ -43,17 +38,15 @@ int	all_check(t_map map)
 				map.c += 1;
 			else if (map.map[i][j] == 'P')
 				map.p += 1;
+			else if (map.map[i][j] == 'N')
+				map.n += 1;
 			else if (map.map[i][j] != '0' && map.map[i][j] != '1')
 				return (ft_error("Yabancı karakter!"));
 			j++;
 		}
 		i++;
 	}
-	if (map.e > 0 && map.c > 0 && map.p == 1)
-		return (1);
-	else if (map.p > 1)
-		return (ft_error("Birden çok başlama noktası!"));
-	return (ft_error("Harita eksik!"));
+	return (continue_func(map));
 }
 
 int	left_right_check(t_map map)
@@ -93,7 +86,6 @@ int	map_checker(t_map *map)
 	map->x = 0;
 	map->e = 0;
 	map->c = 0;
-	map->p = 0;
 	while (j < map->y - 1)
 	{
 		i = 0;
@@ -108,7 +100,8 @@ int	map_checker(t_map *map)
 		j++;
 	}
 	if (!top_bot_check(map->map[0]) || !top_bot_check((*map).map[map->y - 1])
-		|| !left_right_check(*map) || !left_right_check(*map) || !all_check(*map))
+		|| !left_right_check(*map) || !left_right_check(*map)
+		|| !all_check(*map))
 		return (map_free(*map));
 	return (1);
 }

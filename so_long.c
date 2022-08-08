@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:16 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/07 18:43:19 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/08 12:58:38 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int ac, char **av)
 
 	ptr = (t_ptrs *)malloc(sizeof(t_ptrs));
 	ptr-> images = (t_images *)malloc(sizeof(t_images));
-	ptr-> player = (t_player *)malloc(sizeof(t_player));
+	//ptr-> player = (t_player *)malloc(sizeof(t_player));
 	if (ac != 2)
 		return(0);
 	start(av, ptr);

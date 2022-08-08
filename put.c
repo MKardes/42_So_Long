@@ -6,14 +6,11 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 22:32:18 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/07 18:45:45 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/08 17:37:45 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	anim_position(t_player *stuff)
-{}
 
 void	position(t_ptrs *ptr, int x, int y, char c)
 {
@@ -25,17 +22,15 @@ void	position(t_ptrs *ptr, int x, int y, char c)
 	{
 		ptr->player->x = x * p_x;
 		ptr->player->y = y * p_y;
-		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->player->skin[PLAYER], ptr->player->x, ptr->player->y);
 	}
 }
 
-void	bg_put(t_ptrs *ptr)
+void	background_put(t_ptrs *ptr)
 {
 	int		y;
 	int		x;
 	
 	y = 0;
-	ft_printf("put: %d\n",LAYER);
 	while (y < ptr->map.y)
 	{
 		x = 0;
@@ -51,7 +46,22 @@ void	bg_put(t_ptrs *ptr)
 	}
 }
 
+void	mvable_put(t_ptrs *ptr)
+{
+	int	i;
+
+	i = 0;
+	ft_printf("%d\n",ptr->mv_cnt);
+	while (i < ptr->mv_cnt)
+	{
+		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->player[i].skin[0],
+			ptr->player[i].x * p_x, ptr->player[i].y * p_y);
+		i++;
+	}
+}
+
 void	map_put(t_ptrs *ptr)
 {
-	bg_put(ptr);
+	background_put(ptr);
+	mvable_put(ptr);
 }

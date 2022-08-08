@@ -1,5 +1,21 @@
 #include "so_long.h"
 
+
+int	map_free(t_map map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map.y)
+	{
+		free(map.map[i]);
+		i++;
+	}
+	free(map.map);
+	return (0);
+}
+
+
 int	ft_error(char *str)
 {
 	ft_printf("Error\n%s\n", str);
@@ -31,6 +47,8 @@ int check_file(char **av, t_ptrs *ptr)
 	int		fd;
 	t_map	map;
 
+	map.p = 0;
+	map.n = 0;
 	if (ft_strncmp((ft_strchr(av[1],'.') + 1), "ber", 4))
 		return (!ft_error("Yanlış dosya türü!"));
 	fd = open(av[1],O_RDONLY);

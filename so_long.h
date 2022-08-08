@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/07 18:41:56 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/08 17:31:23 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define W_CNT 3
 # define P_CNT 4
 # define X_CNT 2
-# define E_CNT 0
+# define E_CNT 1
 # define C_CNT 9
 # define LAYER 9
 # define PLAYER 0
@@ -55,6 +55,7 @@ typedef struct s_map{
     int     e;
     int     c;
     int     p;
+	int		n;
 }   t_map;
 
 typedef struct s_images{
@@ -80,6 +81,7 @@ typedef struct s_ptrs{
 	void		*mlx;
 	void		*win;
 	void		*image;
+	int			mv_cnt;
 	int			x;
 	int			y;
 	int			a;
@@ -91,6 +93,7 @@ typedef struct s_ptrs{
 }	t_ptrs;
 
 char	*get_next_line(int fd);
+int		map_free(t_map map);
 int		ft_error(char *str);
 int		map_checker(t_map *map);
 int		check_file(char **av, t_ptrs *ptr);
@@ -100,5 +103,7 @@ void	image_create(t_ptrs *ptr);
 void	start(char **av, t_ptrs *ptr);
 void	map_put(t_ptrs *ptr);
 void	image_create(t_ptrs *ptr);
+void    start_movable(t_ptrs *ptr);
+void	start(char **av, t_ptrs *ptr);
 
 #endif
