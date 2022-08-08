@@ -1,17 +1,17 @@
 #include "so_long.h"
 
 
-int	map_free(t_map map)
+int	map_free(t_map *map)
 {
 	int	i;
 
 	i = 0;
-	while (i < map.y)
+	while (i < map->y)
 	{
-		free(map.map[i]);
+		free(map->map[i]);
 		i++;
 	}
-	free(map.map);
+	free(map->map);
 	return (0);
 }
 
@@ -45,18 +45,19 @@ int map_create(int fd, t_map *map)
 int check_file(char **av, t_ptrs *ptr)
 {
 	int		fd;
-	t_map	map;
+	t_map	*map;
 
-	map.p = 0;
-	map.n = 0;
+	map = (t_map *)malloc(sizeof(t_map));
+	map->p = 0;
+	map->n = 0;
 	if (ft_strncmp((ft_strchr(av[1],'.') + 1), "ber", 4))
 		return (!ft_error("Yanlış dosya türü!"));
 	fd = open(av[1],O_RDONLY);
 	if (fd == -1)
 		return (!ft_error("Dosya mevcut değil!"));
-	if (!map_create(fd, &map))
+	if (!map_create(fd, map))
 		return(1);
-	if (!map_checker(&map))
+	if (!map_checker(map))
 		return(1);
 	(*ptr).map = map;
 	return(0);

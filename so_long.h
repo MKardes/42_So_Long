@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/08 17:31:23 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/08 17:57:29 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,14 @@ typedef struct s_ptrs{
 	int			a;
 	int			i;
 	int			p;
-	t_map		map;
+	t_map		*map;
 	t_player	*player;
 	t_images	*images;
 }	t_ptrs;
 
 char	*get_next_line(int fd);
-int		map_free(t_map map);
+int		key_states(int key, t_ptrs **ptr);
+int		map_free(t_map *map);
 int		ft_error(char *str);
 int		map_checker(t_map *map);
 int		check_file(char **av, t_ptrs *ptr);
