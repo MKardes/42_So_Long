@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/10 21:03:48 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/11 00:51:55 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 # define W 13
 # define O 31
 # define P 35
+# define Z 6
+# define X 7
+# define C 8
+# define V 9
 # define B1 18
 # define B2 19
 # define B3 20
@@ -45,21 +49,22 @@
 # define ENM 4
 # define COL 5
 # define L_CNT 13
-# define W_CNT 3
-# define P_CNT 4
-# define X_CNT 2
+# define W_CNT 2
+# define P_CNT 16
+# define X_CNT 60
 # define E_CNT 1
-# define C_CNT 9
-# define LAYER 9
+# define C_CNT 4
+# define LAYER 0
 # define PLAYER 0
-# define WALL 2
+# define WALL 0
 # define ENEMY 0
-# define EXIT 1
+# define EXIT 0
+# define COLL 0
 
 # define PIX 64
 # define PIY 64
 # define SPEED 5
-# define ANIM_SPEED 0
+# define ANIM_SPEED 5
 
 typedef struct s_map{
     char    **map;
@@ -100,6 +105,7 @@ typedef struct s_ptrs{
 	int			a;
 	int			p;
 	int			bg;
+	int			c_p;
 	int			a_p;
 	int			a_e;
 	int			a_c;

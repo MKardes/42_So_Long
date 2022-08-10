@@ -4,7 +4,7 @@ void    direction_UD_continue(t_ptrs *ptr, int key, int n_y, int p_y)
 {
     if (key == W)
     {
-        ptr->a_p = 0;
+        ptr->a_p = 1;
         if (ptr->map->map[n_y][ptr->player[0].x / PIX] != '1')
         {
             ptr->move += 1;
@@ -13,7 +13,7 @@ void    direction_UD_continue(t_ptrs *ptr, int key, int n_y, int p_y)
     }
 	if (key == S)
     {
-        ptr->a_p = 1;
+        ptr->a_p = 0;
         if (ptr->map->map[p_y][ptr->player[0].x / PIX] != '1')
         {
             ptr->move += 1;
@@ -26,7 +26,7 @@ void    direction_RL_continue(t_ptrs *ptr, int key, int n_x, int p_x)
 {
     if (key == D)
     {
-        ptr->a_p = 2;
+        ptr->a_p = 3;
         if (ptr->map->map[ptr->player[0].y / PIY][p_x] != '1')
         {
             ptr->move += 1;
@@ -35,7 +35,7 @@ void    direction_RL_continue(t_ptrs *ptr, int key, int n_x, int p_x)
     }
 	if (key == A)
     {
-        ptr->a_p = 3;
+        ptr->a_p = 2;
         if (ptr->map->map[ptr->player[0].y / PIY][n_x] != '1')
         {
             ptr->move += 1;
