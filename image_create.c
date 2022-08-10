@@ -72,8 +72,8 @@ void image_create(t_ptrs *ptr)
 	int			i;
 	int			j;
 
-	ptr->images->x = p_x;
-	ptr->images->y = p_y;
+	ptr->images->x = PIX;
+	ptr->images->y = PIY;
 	i = 0;
 	image_allocation(ptr);
 	while (i <= 5)

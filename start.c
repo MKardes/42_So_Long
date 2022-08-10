@@ -2,8 +2,8 @@
 
 void	anim_position(t_player *stuff, int x, int y, t_ptrs *ptr)
 {
-	stuff->x = x;
-	stuff->y = y;
+	stuff->x = x * PIX;
+	stuff->y = y * PIY;
 	if (ptr->map->map[y][x] == 'P')
 		stuff->skin = ptr->images->play;
 	else
@@ -16,8 +16,6 @@ void    start_movable(t_ptrs *ptr)
     int	x;
 
     y = 0;
-	ft_printf("%d\n",ptr->map->p + ptr->map->n);
-		exit(0);
 	ptr->mv_cnt = 0;
 	ptr->player = (t_player*)malloc(sizeof(t_player) * (ptr->map->p + ptr->map->n));
     while (y < ptr->map->y)
@@ -44,8 +42,11 @@ void	start(char **av, t_ptrs *ptr)
 	ptr->mlx = mlx_init();
 	ptr->a = 1;
 	ptr->p = 1;
-	ptr->i = 0;
-	ptr->win = mlx_new_window(ptr->mlx, ptr->map->x * p_x, ptr->map->y * p_y, "Heyyo");
+	ptr->anim= 0;
+	ptr->move = 0;
+	ptr->bg= 0;
+	ptr->speed = 0;
+	ptr->win = mlx_new_window(ptr->mlx, ptr->map->x * PIX, ptr->map->y * PIY, "Heyyo");
 	image_create(ptr);
 	start_movable(ptr);
 }

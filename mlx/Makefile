@@ -12,7 +12,6 @@ CFLAGS+=-O2
 CFLAGS+= -DSTRINGPUTX11
 
 all: $(NOM)
-	@echo "\033[0;92mSUCCEED \033[0;39m"
 
 $(NOM):	$(OBJ)
 	ar -r $(NOM) $(OBJ)

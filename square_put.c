@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop.c                                             :+:      :+:    :+:   */
+/*   square_put.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/04 22:32:36 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/10 12:27:07 by mkardes          ###   ########.fr       */
+/*   Created: 2022/08/10 17:28:21 by mkardes           #+#    #+#             */
+/*   Updated: 2022/08/10 20:45:28 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	upgrade(t_ptrs *ptr)
+void	square_put(t_ptrs *ptr, int color, int x, int u)
 {
-	ptr->a_e = (ptr->a_e + 1) % E_CNT;
-	ptr->a_c = (ptr->a_c + 1) % C_CNT;
-	usleep(ANIM_SPEED);
-}
+	int	i;
+	int	j;
 
-void	draw(t_ptrs *ptr)
-{
-	map_put(ptr);
-	mvable_put(ptr);
-	move_count_put(ptr);
-}
-
-int	loop(t_ptrs *ptr)
-{
-	upgrade(ptr);
-	//usleep(ANIM_SPEED);
-	draw(ptr);
-	//usleep(ANIM_SPEED);
-	return (1);
+	i = 0;
+	while (i < 15)
+	{
+		j = u;
+		while (j < x)
+		{
+			mlx_pixel_put(ptr->mlx, ptr->win, j, i, color);
+			j++;
+		}
+		i++;
+	}
 }
