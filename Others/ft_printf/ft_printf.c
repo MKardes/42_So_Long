@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 11:06:49 by mkardes           #+#    #+#             */
-/*   Updated: 2022/02/24 15:50:30 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/11 01:06:34 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,23 +109,3 @@ int	ft_printf(const char *str, ...)
 	va_end(arg);
 	return (len);
 }
-/*
-int main()
-{
-    int             as;
-    int             a = 121241241;
-    char            s[] = "_asrfassdgsaga_";
-    char            v = 'a';
-    char            *glcn;
-    static char     *c;
-    unsigned int    xx = 463667312;
-    unsigned int    xc = 126467124;
-    unsigned int    hhh = 4294967295;
-
-    glcn = ft_strdup("asfghsgusjghsdg");
-
-    as = ft_printf("%d, %s, %c, %s, %u, %x, %X,%%%%%%, %p", a, s, v, c, hhh, xc, xx, glcn);
-    printf("\n\n%d\n\n",as);
-    as = printf("%d, %s, %c, %s, %u, %x, %X,%%%%%%, %p", a, s, v, c, hhh, xc, xx, glcn);
-    printf("\n\n%d\n\n",as);
-}*/

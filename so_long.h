@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/11 00:51:55 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/11 17:12:49 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	map_put(t_ptrs *ptr);
 void	mvable_put(t_ptrs *ptr);
 void	move_count_put(t_ptrs *ptr);
 void	direction(t_ptrs *ptr, int key);
-
+void    collect_chc(t_ptrs *ptr);
 void	square_put(t_ptrs *ptr, int color, int x, int y);
 
 #endif

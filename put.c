@@ -6,11 +6,19 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 22:32:18 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/11 00:53:28 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/11 17:37:24 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	collect_chc(t_ptrs *ptr)
+{
+	if (ptr->map->map[(ptr->player[0].y/ PIY)][(ptr->player[0].x / PIX)] == 'C')
+	{
+		ptr->map->map[(ptr->player[0].y / PIY)][(ptr->player[0].x / PIX)] = '0';
+	}
+}
 
 void	position(t_ptrs *ptr, int x, int y, char c)
 {
@@ -33,7 +41,7 @@ void	map_put(t_ptrs *ptr)
 		{
 			mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->images->lay[(LAYER + ptr->bg) % L_CNT], x * PIX, y * PIY);
 			if (ptr->map->map[y][x] == 'C')
-				mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->images->col[COLL + ptr->a_c], x * PIX, y * PIY);
+				mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->images->col[COLL + ptr->a_c], x * PIX + 20, y * PIY + 20);
 			if (ptr->map->map[y][x] == '1' || ptr->map->map[y][x] == 'E' ||
 				ptr->map->map[y][x] == 'P'|| ptr->map->map[y][x] == 'N')
 				position(ptr, x, y, ptr->map->map[y][x]);

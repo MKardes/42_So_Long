@@ -23,6 +23,15 @@ $(PRINT): $(F_PRINT)
 $(LINE): $(F_LINE)
 	make -C $(F_LINE)
 
+norm:
+	@echo "\033[0;94m\n\tNORMİNETTES\n\n"
+	@echo "\033[0;92mFt_Printf\033[0;39m\n"
+	norminette $(F_PRINT)
+	@echo "\n\033[0;92mGet_Next_Line\033[0;39m\n"
+	norminette $(F_LINE)
+	@echo "\n\033[0;92mThis Directiory\033[0;39m\n"
+	norminette *.c *.h
+
 clean:
 	make clean -C $(F_LINE)
 	make clean -C $(F_PRINT)

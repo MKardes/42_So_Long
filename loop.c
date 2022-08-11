@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 22:32:36 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/11 00:47:00 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/11 17:04:54 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	upgrade(t_ptrs *ptr)
 {
+	collect_chc(ptr);
 	ptr->a_e = (ptr->a_e + 1) % X_CNT;
 	ptr->a_c = (ptr->a_c + 1) % C_CNT;
 	usleep(ANIM_SPEED);
