@@ -6,26 +6,22 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 22:32:18 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/11 17:37:24 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/12 23:06:09 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	collect_chc(t_ptrs *ptr)
-{
-	if (ptr->map->map[(ptr->player[0].y/ PIY)][(ptr->player[0].x / PIX)] == 'C')
-	{
-		ptr->map->map[(ptr->player[0].y / PIY)][(ptr->player[0].x / PIX)] = '0';
-	}
-}
 
 void	position(t_ptrs *ptr, int x, int y, char c)
 {
 	if (c == '1')
 		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->images->wall[(WALL + ptr->bg) % W_CNT], x * PIX, y * PIY);
 	if (c == 'E')
-		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->images->exit[EXIT + ptr->a_e], x * PIX, y * PIY);
+	{
+		if (ptr->door_chc)
+        	mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->images->exit[60], x * PIX, y * PIY);
+		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->images->exit[EXIT + ptr->a_e], x * PIX + 8, y * PIY + 8);
+	}
 }
 
 void	map_put(t_ptrs *ptr)
@@ -51,17 +47,22 @@ void	map_put(t_ptrs *ptr)
 	}
 }
 
-void	mvable_put(t_ptrs *ptr)
+void	player_put(t_ptrs *ptr)
+{
+	mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->player[0].skin[PLAYER + ptr->a_p + ptr->c_p],
+                ptr->player[0].x, ptr->player[0].y);
+}
+
+void	enemy_put(t_ptrs *ptr)
 {
 	int	i;
 
 	i = 1;
-	mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->player[0].skin[PLAYER + ptr->a_p + ptr->c_p],
-                ptr->player[0].x, ptr->player[0].y);
+	ft_printf("Move Count: %d\n", ptr->mv_cnt);
 	while (i < ptr->mv_cnt)
 	{
-		//mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->player[i].skin[0],
-				//ptr->player[i].x, ptr->player[i].y);
+		mlx_put_image_to_window(ptr->mlx, ptr->win, ptr->player[i].skin[ENEMY],
+				ptr->player[i].x, ptr->player[i].y);
 		i++;
 	}
 }

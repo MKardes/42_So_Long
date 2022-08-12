@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:46:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/07 17:47:04 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/12 12:50:25 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	image_allocation(t_ptrs *ptr)
 	(*ptr).images->i[0] = L_CNT;
     (*ptr).images->i[1] = W_CNT;
     (*ptr).images->i[2] = P_CNT;
-    (*ptr).images->i[3] = X_CNT;
+    (*ptr).images->i[3] = X_CNT + 1;
 	(*ptr).images->i[4] = E_CNT;
 	(*ptr).images->i[5] = C_CNT;
 	(*ptr).images->lay = (void **)malloc(sizeof(void*) * (*ptr).images->i[0]);

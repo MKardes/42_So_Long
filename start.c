@@ -52,6 +52,7 @@ void	start(char **av, t_ptrs *ptr)
 	ptr->a_e = 0;
 	ptr->a_c = 0;
 	ptr->speed = 0;
+	ptr->door_chc = 0;
 	ptr->win = mlx_new_window(ptr->mlx, ptr->map->x * PIX, ptr->map->y * PIY, "Heyyo");
 	image_create(ptr);
 	start_movable(ptr);

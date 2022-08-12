@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/11 17:12:49 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/12 23:00:01 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 # define W_CNT 2
 # define P_CNT 16
 # define X_CNT 60
-# define E_CNT 1
+# define E_CNT 2
 # define C_CNT 4
 # define LAYER 0
 # define PLAYER 0
@@ -100,6 +100,7 @@ typedef struct s_ptrs{
 	void		*win;
 	void		*image;
 	int			mv_cnt;
+	int			door_chc;
 	int			x;
 	int			y;
 	int			a;
@@ -127,11 +128,15 @@ int		loop(t_ptrs *ptr);
 void	start(char **av, t_ptrs *ptr);
 void	image_create(t_ptrs *ptr);
 void    start_movable(t_ptrs *ptr);
+
 void	map_put(t_ptrs *ptr);
-void	mvable_put(t_ptrs *ptr);
+void    player_put(t_ptrs *ptr);
+void	enemy_put(t_ptrs *ptr);
 void	move_count_put(t_ptrs *ptr);
+
 void	direction(t_ptrs *ptr, int key);
 void    collect_chc(t_ptrs *ptr);
+void    check_door(t_ptrs *ptr);
 void	square_put(t_ptrs *ptr, int color, int x, int y);
 
 #endif
