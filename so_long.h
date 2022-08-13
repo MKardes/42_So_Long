@@ -6,18 +6,12 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/12 23:00:01 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/13 03:10:33 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLONG
-# define SOLONG
-
-# include "Others/ft_printf/ft_printf.h"
-# include "Others/Get_Next_Line/get_next_line.h"
-# include "mlx/mlx.h"
-# include <fcntl.h>
-
+#ifndef SO_LONG_H
+# define SO_LONG_H
 # define A 0
 # define S 1
 # define D 2
@@ -35,13 +29,12 @@
 # define B5 23
 # define B6 22
 # define B7 26
-# define UP 126
-# define DOWN 125
-# define LEFT 123
-# define RİGHT 124
+# define U_ 126
+# define D_ 125
+# define L_ 123
+# define R_ 124
 # define P 35
 # define ESC 53
-
 # define LAY 0
 # define WLL 1
 # define PLY 2
@@ -60,21 +53,25 @@
 # define ENEMY 0
 # define EXIT 0
 # define COLL 0
-
 # define PIX 64
 # define PIY 64
 # define SPEED 5
-# define ANIM_SPEED 5
+# define COIN_ANIM 3
+
+# include "Others/ft_printf/ft_printf.h"
+# include "Others/Get_Next_Line/get_next_line.h"
+# include "mlx/mlx.h"
+# include <fcntl.h>
 
 typedef struct s_map{
-    char    **map;
-    int     x;
-    int     y;
-    int     e;
-    int     c;
-    int     p;
+	char	**map;
+	int		x;
+	int		y;
+	int		e;
+	int		c;
+	int		p;
 	int		n;
-}   t_map;
+}	t_map;
 
 typedef struct s_images{
 	void	**play;
@@ -101,6 +98,7 @@ typedef struct s_ptrs{
 	void		*image;
 	int			mv_cnt;
 	int			door_chc;
+	int			cycle;
 	int			x;
 	int			y;
 	int			a;
@@ -108,8 +106,9 @@ typedef struct s_ptrs{
 	int			bg;
 	int			c_p;
 	int			a_p;
-	int			a_e;
+	int			a_x;
 	int			a_c;
+	int			*a_e;
 	int			anim;
 	int			move;
 	int			speed;
@@ -127,16 +126,16 @@ int		key_states(int key, t_ptrs **ptr);
 int		loop(t_ptrs *ptr);
 void	start(char **av, t_ptrs *ptr);
 void	image_create(t_ptrs *ptr);
-void    start_movable(t_ptrs *ptr);
+void	start_movable(t_ptrs *ptr);
 
 void	map_put(t_ptrs *ptr);
-void    player_put(t_ptrs *ptr);
+void	player_put(t_ptrs *ptr);
 void	enemy_put(t_ptrs *ptr);
 void	move_count_put(t_ptrs *ptr);
 
 void	direction(t_ptrs *ptr, int key);
-void    collect_chc(t_ptrs *ptr);
-void    check_door(t_ptrs *ptr);
+void	collect_chc(t_ptrs *ptr);
+void	check_door(t_ptrs *ptr);
 void	square_put(t_ptrs *ptr, int color, int x, int y);
 
 #endif

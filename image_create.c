@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:46:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/12 12:50:25 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/13 02:47:56 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@ void	image_allocation(t_ptrs *ptr)
 {
 	(*ptr).images->i = (int *)malloc(sizeof(int) * 6);
 	(*ptr).images->i[0] = L_CNT;
-    (*ptr).images->i[1] = W_CNT;
-    (*ptr).images->i[2] = P_CNT;
-    (*ptr).images->i[3] = X_CNT + 1;
+	(*ptr).images->i[1] = W_CNT;
+	(*ptr).images->i[2] = P_CNT;
+	(*ptr).images->i[3] = X_CNT + 1;
 	(*ptr).images->i[4] = E_CNT;
 	(*ptr).images->i[5] = C_CNT;
-	(*ptr).images->lay = (void **)malloc(sizeof(void*) * (*ptr).images->i[0]);
-	(*ptr).images->wall = (void **)malloc(sizeof(void*) * (*ptr).images->i[1]);
-	(*ptr).images->play = (void **)malloc(sizeof(void*) * (*ptr).images->i[2]);
-	(*ptr).images->exit = (void **)malloc(sizeof(void*) * (*ptr).images->i[3]);
-	(*ptr).images->enem = (void **)malloc(sizeof(void*) * (*ptr).images->i[4]);
-	(*ptr).images->col = (void **)malloc(sizeof(void*) * (*ptr).images->i[5]);
+	(*ptr).images->lay = (void **)malloc(sizeof(void *) * (*ptr).images->i[0]);
+	(*ptr).images->wall = (void **)malloc(sizeof(void *) * (*ptr).images->i[1]);
+	(*ptr).images->play = (void **)malloc(sizeof(void *) * (*ptr).images->i[2]);
+	(*ptr).images->exit = (void **)malloc(sizeof(void *) * (*ptr).images->i[3]);
+	(*ptr).images->enem = (void **)malloc(sizeof(void *) * (*ptr).images->i[4]);
+	(*ptr).images->col = (void **)malloc(sizeof(void *) * (*ptr).images->i[5]);
 }
 
-char	*join_2(char *str,int a, int b, char *str2)
+char	*join_2(char *str, int a, int b, char *str2)
 {
 	char	*inte;
 	char	*str1;
@@ -54,26 +54,30 @@ char	*join_2(char *str,int a, int b, char *str2)
 void	open_image(t_ptrs *ptr, int i, int j)
 {
 	if (i == 0)
-		ptr->images->lay[j] = mlx_xpm_file_to_image(&(ptr->mlx), ptr->images->str, &(ptr->images->x), &(ptr->images->y));
+		ptr->images->lay[j] = mlx_xpm_file_to_image(&(ptr->mlx),
+				ptr->images->str, &(ptr->images->x), &(ptr->images->y));
 	else if (i == 1)
-		ptr->images->wall[j] = mlx_xpm_file_to_image(&(ptr->mlx), ptr->images->str, &(ptr->images->x), &(ptr->images->y));
+		ptr->images->wall[j] = mlx_xpm_file_to_image(&(ptr->mlx),
+				ptr->images->str, &(ptr->images->x), &(ptr->images->y));
 	else if (i == 2)
-        ptr->images->play[j] = mlx_xpm_file_to_image(&(ptr->mlx), ptr->images->str, &(ptr->images->x), &(ptr->images->y));
+		ptr->images->play[j] = mlx_xpm_file_to_image(&(ptr->mlx),
+				ptr->images->str, &(ptr->images->x), &(ptr->images->y));
 	else if (i == 3)
-        ptr->images->exit[j] = mlx_xpm_file_to_image(&(ptr->mlx), ptr->images->str, &(ptr->images->x), &(ptr->images->y));
+		ptr->images->exit[j] = mlx_xpm_file_to_image(&(ptr->mlx),
+				ptr->images->str, &(ptr->images->x), &(ptr->images->y));
 	else if (i == 4)
-        ptr->images->enem[j] = mlx_xpm_file_to_image(&(ptr->mlx), ptr->images->str, &(ptr->images->x), &(ptr->images->y));
+		ptr->images->enem[j] = mlx_xpm_file_to_image(&(ptr->mlx),
+				ptr->images->str, &(ptr->images->x), &(ptr->images->y));
 	else if (i == 5)
-        ptr->images->col[j] = mlx_xpm_file_to_image(&(ptr->mlx), ptr->images->str, &(ptr->images->x), &(ptr->images->y));
+		ptr->images->col[j] = mlx_xpm_file_to_image(&(ptr->mlx),
+				ptr->images->str, &(ptr->images->x), &(ptr->images->y));
 }
 
-void image_create(t_ptrs *ptr)
+void	image_create(t_ptrs *ptr)
 {
-	int			i;
-	int			j;
+	int	i;
+	int	j;
 
-	ptr->images->x = PIX;
-	ptr->images->y = PIY;
 	i = 0;
 	image_allocation(ptr);
 	while (i <= 5)
