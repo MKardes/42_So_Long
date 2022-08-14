@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 02:00:20 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/13 02:12:51 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/14 15:04:09 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	start_movable(t_ptrs *ptr)
 			else if (ptr->map->map[y][x] == 'N')
 			{
 				anim_position(&(ptr->player[ptr->mv_cnt]), x, y, ptr);
+				ptr->a_e[ptr->mv_cnt] = ptr->mv_cnt % 2;
 				ptr->mv_cnt++;
 			}
 			x++;

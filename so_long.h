@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/13 03:10:33 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/14 16:44:28 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define PIX 64
 # define PIY 64
 # define SPEED 5
+# define EXIT_ANIM 1
 # define COIN_ANIM 3
 
 # include "Others/ft_printf/ft_printf.h"
@@ -127,6 +128,10 @@ int		loop(t_ptrs *ptr);
 void	start(char **av, t_ptrs *ptr);
 void	image_create(t_ptrs *ptr);
 void	start_movable(t_ptrs *ptr);
+void	exit_anim(t_ptrs *ptr);
+void	coin_anim(t_ptrs *ptr);
+void	anim_speed(t_ptrs *ptr);
+void	enemies_anim(t_ptrs *ptr);
 
 void	map_put(t_ptrs *ptr);
 void	player_put(t_ptrs *ptr);
@@ -136,6 +141,7 @@ void	move_count_put(t_ptrs *ptr);
 void	direction(t_ptrs *ptr, int key);
 void	collect_chc(t_ptrs *ptr);
 void	check_door(t_ptrs *ptr);
+void	enem_chc(t_ptrs *ptr);
 void	square_put(t_ptrs *ptr, int color, int x, int y);
 
 #endif
