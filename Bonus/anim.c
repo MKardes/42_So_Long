@@ -6,37 +6,35 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 15:10:46 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/14 16:33:02 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/15 10:52:22 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	enemies_anim(t_ptrs *ptr)
 {
 	int	i;
 
-	i = 0;
-	while (i < ptr->map->n)
+	i = -1;
+	while (++i < ptr->map->n)
 	{
-		if (ptr->a_e[i] == 1 && ptr->map->map[ptr->player[i + 1].y / PIY][(ptr->player[i + 1].x + 52) / PIX] != '1')
+		if (ptr->a_e[i] == 1 && ptr->map->map[ptr->player[i + 1].y / PIY]
+			[(ptr->player[i + 1].x + 52) / PIX] != '1')
 			ptr->player[i + 1].x += SPEED + ptr->speed;
-		else if (ptr->a_e[i] == 0 && ptr->map->map[ptr->player[i + 1].y / PIY][ptr->player[i + 1].x / PIX] != '1')
+		else if (ptr->a_e[i] == 0 && ptr->map->map[ptr->player[i + 1].y / PIY]
+			[ptr->player[i + 1].x / PIX] != '1')
 			ptr->player[i + 1].x -= SPEED + ptr->speed;
-		else
+		else if (ptr->a_e[i] == 0)
 		{
-			if (ptr->a_e[i] == 0)
-			{
-				ptr->a_e[i] = 1;
-				ptr->player[i + 1].x += (SPEED + ptr->speed);
-			}
-			else if (ptr->a_e[i] == 1)
-			{
-				ptr->a_e[i] = 0;
-				ptr->player[i + 1].x -= (SPEED + ptr->speed); 
-			}
+			ptr->a_e[i] = 1;
+			ptr->player[i + 1].x += (SPEED + ptr->speed);
 		}
-		i++;
+		else if (ptr->a_e[i] == 1)
+		{
+			ptr->a_e[i] = 0;
+			ptr->player[i + 1].x -= (SPEED + ptr->speed);
+		}
 	}
 }
 

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	anim_position(t_player *stuff, int x, int y, t_ptrs *ptr)
 {

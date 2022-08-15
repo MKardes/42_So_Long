@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 12:15:51 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/08 18:00:04 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/15 12:07:23 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	continue_func(t_map *map)
 {
-	if (map->e > 0 && map->c > 0 && map->n > 0 && map->p == 1)
+	if (map->e > 0 && map->c > 0 && map->p == 1)
 		return (1);
 	else if (map->p > 1)
 		return (ft_error("Birden çok başlama noktası!"));
@@ -38,8 +38,6 @@ int	all_check(t_map *map)
 				map->c += 1;
 			else if (map->map[i][j] == 'P')
 				map->p += 1;
-			else if (map->map[i][j] == 'N')
-				map->n += 1;
 			else if (map->map[i][j] != '0' && map->map[i][j] != '1')
 				return (ft_error("Yabancı karakter!"));
 			j++;

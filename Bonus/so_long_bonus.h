@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/14 16:44:28 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/16 00:49:32 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 # define A 0
 # define S 1
 # define D 2
@@ -59,10 +59,19 @@
 # define EXIT_ANIM 1
 # define COIN_ANIM 3
 
-# include "Others/ft_printf/ft_printf.h"
-# include "Others/Get_Next_Line/get_next_line.h"
-# include "mlx/mlx.h"
+# include "../Others/ft_printf/ft_printf.h"
+# include "../Others/Get_Next_Line/get_next_line.h"
+# include "../Others/mlx/mlx.h"
 # include <fcntl.h>
+
+typedef struct s_tri{
+	int	x1;
+	int	x2;
+	int	x3;
+	int	y1;
+	int	y2;
+	int	y3;
+}	t_tri;
 
 typedef struct s_map{
 	char	**map;
@@ -139,9 +148,12 @@ void	enemy_put(t_ptrs *ptr);
 void	move_count_put(t_ptrs *ptr);
 
 void	direction(t_ptrs *ptr, int key);
+void	direction1(t_ptrs *ptr, int key);
 void	collect_chc(t_ptrs *ptr);
 void	check_door(t_ptrs *ptr);
-void	enem_chc(t_ptrs *ptr);
+void	enem_check(t_ptrs *ptr);
+void	exit_check(t_ptrs *ptr);
 void	square_put(t_ptrs *ptr, int color, int x, int y);
+t_ptrs	*tri_fill(t_tri *tri, t_ptrs *ptr, char a);
 
 #endif

@@ -1,7 +1,7 @@
 FILE1 = ../ft_printf
 FILE2 = ../Get_Next_Line
-FILE3 = ../../*.c
-FILE4 = ../Norm
+FILE3 = ../../Bonus
+FILE4 = ../../Game
 FILE5 = ../Norm
 FILE6 = ../Norm
 FILE7 = ../Norm
@@ -33,3 +33,6 @@ all:
 	@$(NORM) Txt/test9.txt $(FILE9) | cat > test9.txt
 	@$(LAST) *.txt
 	@rm -rf *.txt Txt
+
+clean:
+	rm -rf *.txt Txt

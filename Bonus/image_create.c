@@ -6,11 +6,11 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:46:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/13 02:47:56 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/15 12:44:24 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	image_allocation(t_ptrs *ptr)
 {
