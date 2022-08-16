@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:16 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/13 02:59:07 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/16 10:12:32 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	key_states(int key, t_ptrs **ptr)
 		(*ptr)->bg = 3;
 	if (key == B5)
 		(*ptr)->bg = 4;
+	if (key == B6)
+		(*ptr)->bg = 5;
 	if (key == O)
 		(*ptr)->speed--;
 	if (key == P)

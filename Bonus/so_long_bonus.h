@@ -6,7 +6,7 @@
 /*   By: mkardes <mkardes@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:43:10 by mkardes           #+#    #+#             */
-/*   Updated: 2022/08/16 00:49:32 by mkardes          ###   ########.fr       */
+/*   Updated: 2022/08/16 10:11:57 by mkardes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@
 # define EXT 3
 # define ENM 4
 # define COL 5
-# define L_CNT 13
-# define W_CNT 2
+# define L_CNT 6
+# define W_CNT 6
 # define P_CNT 16
 # define X_CNT 60
 # define E_CNT 2
