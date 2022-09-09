@@ -3,27 +3,24 @@
 This project's goal is to develope yourself on MLX library and to have some experiences about windowed projects (puting image, puting pixel, opening a new window, closing a window and so on) by creating a 2D game.
 
 ## There are some sample pictures about my project(Game).
-
-### **So_Long**:
-<!--![solong](./Scripts/img/0.png)-->
-<img src="./Scripts/img/3.png" alt="drawing" width="600"/>
-<img src="./Scripts/img/4.png" alt="drawing" width="600"/>
-<img src="./Scripts/img/0.png" alt="drawing" width="600"/>
-<img src="./Scripts/img/1.png" alt="drawing" width="600"/>
-<img src="./Scripts/img/2.png" alt="drawing" width="600"/>
-<img src="./Scripts/img/5.png" alt="drawing" width="600"/>
-<img src="./Scripts/img/6.png" alt="drawing" width="600"/>
+|||
+|:-:|:-:|
+|<img src="./Scripts/img/3.png" alt="drawing" width="600"/>|<img src="./Scripts/img/4.png" alt="drawing" width="600"/>|
+|<img src="./Scripts/img/6.png" alt="drawing" width="600"/>|<img src="./Scripts/img/1.png" alt="drawing" width="600"/>|
+|<img src="./Scripts/img/2.png" alt="drawing" width="600"/>|<img src="./Scripts/img/5.png" alt="drawing" width="600"/>|
 
 ## MLX Library
 
 Mlx is a basic library to open a window. It has a lot of functions. I'll try to explain them and give some important details.
 
+### Fuctions
 ```c
 void  *mlx_init();
 ```
-  This function initilazies
+<!--  This function initilazies-->
+
 ```c
-void	*mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title);
+void  *mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title);
 ```
 ```c
 int   mlx_clear_window(void *mlx_ptr, void *win_ptr);
